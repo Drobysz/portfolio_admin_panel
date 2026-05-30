@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Admin Panel
 
-## Getting Started
+Next.js admin panel for managing portfolio administrators, projects, images, and
+stacks.
 
-First, run the development server:
+## Environment
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000/api
+```
+
+Only expose the public API base URL to the browser. Admin auth uses the Sanctum
+token returned by `POST /api/admin/login`.
+
+## Routes
+
+- `/admin_panel/login`
+- `/admin_panel/users`
+- `/admin_panel/users/new`
+- `/admin_panel/users/{id}/edit`
+- `/admin_panel/projects`
+- `/admin_panel/projects/new`
+- `/admin_panel/projects/{id}/edit`
+
+Stacks are created only inside the project create/edit form. Each project owns
+its own stacks, and each stack has a name plus a technologies line such as
+`react, tailwind, sass, framer-motion`.
+
+## Local Commands
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The admin panel is responsive: desktop uses a fixed aside, while mobile and
+tablet use a collapsible drawer.
